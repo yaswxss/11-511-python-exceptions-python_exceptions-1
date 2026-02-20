@@ -23,37 +23,37 @@ class ProductFace:
         self._create_sample_cards()
 
     def _create_sample_cards(self) -> None:
-        """Создание примеров карточек для демонстрации."""
+        """Создание примеров карточек."""
 
         try:
             card1 = ProductCard(
-                name="Ноутбук",
-                quantity=52,
-                status=ProductState.accepted,
-                provider="ООО Apple",
-                manufacturer="Apple",
-                price=150000,
-                weight=2000,
-                category="Электроника",
-                location="Казань.Баумана.",
-                shelflife=730,
-                cardID="CARD001",
-                note="Гарантия 3 года"
+                name = "Ноутбук",
+                quantity = 52,
+                status = ProductState.accepted,
+                provider = "ООО Apple",
+                manufacturer = "Apple",
+                price = 150000,
+                weight = 2000,
+                category = "Электроника",
+                location = "Казань.Баумана.",
+                shelflife = 730,
+                cardID = "CARD001",
+                note = "Гарантия 3 года"
             )
 
             card2 = ProductCard(
-                name="Мышь беспроводная",
-                quantity=20,
-                status=ProductState.in_stock,
-                provider="ООО Android",
-                manufacturer="Android",
-                price=1500,
-                weight=100,
-                category="Аксессуары",
-                location="Москва.Бауманская.",
-                shelflife=365,
-                cardID="CARD002",
-                note="Батарейки не входят"
+                name = "Мышь беспроводная",
+                quantity = 20,
+                status = ProductState.in_stock,
+                provider = "ООО Android",
+                manufacturer = "Android",
+                price = 1500,
+                weight = 100,
+                category = "Аксессуары",
+                location = "Москва.Бауманская.",
+                shelflife = 365,
+                cardID = "CARD002",
+                note = "Батарейки не входят"
             )
 
             self.manager.add_card(card1)
@@ -87,7 +87,7 @@ class ProductFace:
     def create_card_interactive(self) -> None:
         """Создание новой карточки."""
 
-        print('СОЗДАНИЕ КАРТОЧКИ')
+        print('Создание карточки товара')
 
         try:
             name = input("Наименование: ")
@@ -115,18 +115,18 @@ class ProductFace:
             note = input("Дополнительные сведения: ")
 
             new_card = (ProductCard(
-                name=name,
-                quantity=quantity,
-                status=status,
-                provider=provider,
-                manufacturer=manufacturer,
-                price=price,
-                weight=weight,
-                category=category,
-                location=location,
-                shelflife=shelflife,
-                cardID=cardID,
-                note=note
+                name = name,
+                quantity = quantity,
+                status = status,
+                provider = provider,
+                manufacturer = manufacturer,
+                price = price,
+                weight = weight,
+                category = category,
+                location = location,
+                shelflife = shelflife,
+                cardID = cardID,
+                note = note
             ))
 
             self.manager.add_card(new_card)
@@ -164,7 +164,7 @@ class ProductFace:
         else:
             print("Карточка не выбрана!")
 
-    def modify_current_card(self) -> None:
+    def change_current_card(self) -> None:
         """Изменить параметры текущей карточки."""
 
         current = self.manager.get_current_card()
@@ -191,14 +191,14 @@ class ProductFace:
         try:
             choice = input("Выберите  (1-12): ")
             if choice == "1":
-                value = input("Новое наименование: ")
-                current.set_name(value)
+                new = input("Новое наименование: ")
+                current.set_name(new)
             elif choice == "2":
-                value = int(input("Новое количество: "))
-                current.set_quantity(value)
+                new = int(input("Новое количество: "))
+                current.set_quantity(new)
             elif choice == "3":
-                state_obj = ProductState()  # СОЗДАЕМ ОБЪЕКТ
-                states = state_obj.get_all_states()  # ВЫЗЫВАЕМ МЕТОД ОБЪЕКТА
+                state_obj = ProductState()
+                states = state_obj.get_all_states()
                 print("0: Принято к учёту")
                 print("1: Состоит на учёте")
                 print("2: Повреждено")
@@ -207,37 +207,36 @@ class ProductFace:
                 idx = int(input("Выберите статус (0-4): "))
                 current.set_status(states[idx])
             elif choice == "4":
-                value = input("Новый поставщик: ")
-                current.set_provider(value)
+                new = input("Новый поставщик: ")
+                current.set_provider(new)
             elif choice == "5":
-                value = input("Новый производитель: ")
-                current.set_manufacturer(value)
+                new = input("Новый производитель: ")
+                current.set_manufacturer(new)
             elif choice == "6":
-                value = int(input("Новая цена: "))
-                current.set_price(value)
+                new = int(input("Новая цена: "))
+                current.set_price(new)
             elif choice == "7":
-                value = int(input("Новый вес: "))
-                current.set_weight(value)
+                new = int(input("Новый вес: "))
+                current.set_weight(new)
             elif choice == "8":
-                value = input("Новая категория: ")
-                current.set_category(value)
+                new = input("Новая категория: ")
+                current.set_category(new)
             elif choice == "9":
-                value = input("Новое местоположение: ")
-                current.set_location(value)
+                new = input("Новое местоположение: ")
+                current.set_location(new)
             elif choice == "10":
-                value = int(input("Новый срок годности: "))
-                current.set_shelflife(value)
+                new = int(input("Новый срок годности: "))
+                current.set_shelflife(new)
             elif choice == "11":
-                value = input("Новое айди карты: ")
-                current.set_cardID(value)
+                new = input("Новое айди карты: ")
+                current.set_cardID(new)
             elif choice == "12":
-                value = input("Новые дополнительные сведения: ")
-                current.set_note(value)
+                new = input("Новые дополнительные сведения: ")
+                current.set_note(new)
             else:
                 print("Неверный выбор!")
                 return
 
-            print("Данные обновлены!")
 
         except ValueError as e:
             print(f"Ошибка ввода: {e}")
@@ -283,7 +282,7 @@ class ProductFace:
                 elif choice == '4':
                     self.show_current_card()
                 elif choice == '5':
-                    self.modify_current_card()
+                    self.change_current_card()
                 elif choice == '6':
                     self.write_off_current_card()
                 else:

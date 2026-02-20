@@ -41,7 +41,7 @@ class ProductCentral:
             ProductCard: Карточку товара или none если не выбрана
         """
 
-        if self.current_card_index >= 0 and self.current_card_index < len(self.cards):
+        if 0 <= self.current_card_index < len(self.cards):
             return self.cards[self.current_card_index]
         return None
 
